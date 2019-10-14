@@ -16,3 +16,17 @@ CREATE TABLE `user` (
 ALTER TABLE `user` ADD UNIQUE (`username`);
 ALTER TABLE `user` ADD UNIQUE (`email`);
 ALTER TABLE `user` ADD UNIQUE (`phone`);
+
+
+DROP TABLE IF EXISTS `book`;
+CREATE TABLE `book` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL comment '用户名',
+  
+  `writer` varchar(50) DEFAULT NULL,
+  `price` int DEFAULT NULL,
+  
+  
+  PRIMARY KEY (`id`)
+);
+
