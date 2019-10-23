@@ -3,7 +3,8 @@ package edu.hubu.learn.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class BookService {
     }
 
     public List<Book> getBooks() {
-        return bookDao.findAll();
+        return bookDao.findAll(new Sort(Direction.DESC, "id"));
     }
 
 
@@ -29,5 +30,7 @@ public class BookService {
     public Book addBook(Book book) {
         return bookDao.save(book);
     }
-
+    public void deleteBook(Long id) {
+        bookDao.deleteById(id);
+    }
 }

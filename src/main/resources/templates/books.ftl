@@ -29,12 +29,13 @@
        <div class="col-md-8">      
          <table class="table table-hover">
            <thead>
-           <th>ID</th><th>书名</th><th>作者</th><th>价格</th>
+           <th>ID</th><th>书名</th><th>作者</th><th>价格</th><th>删除</th>
            </thead>
            <tbody>
            <#list books as book>
            <tr>
            <td>${book.id}</td><td>${book.name}</td><td>${book.writer}</td><td>${book.price}</td>
+            <td><a href="/book/delete/${book.id}">删除</a></td>
            </tr>
            </#list>
            </tbody>

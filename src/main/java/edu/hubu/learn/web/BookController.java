@@ -57,5 +57,10 @@ public class BookController {
         ModelAndView mav = new ModelAndView("redirect:/book/list");
         return mav;
     }
-
+    @RequestMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable Long id) {
+        bookService.deleteBook(id);
+        ModelAndView mav = new ModelAndView("redirect:/book/list");
+        return mav;
+    }
 }
