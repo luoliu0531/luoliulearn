@@ -33,4 +33,7 @@ public class BookService {
     public void deleteBook(Long id) {
         bookDao.deleteById(id);
     }
+    public void modifyBook(Book book) {
+        bookDao.save(book);
+    }
 }

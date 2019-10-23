@@ -63,4 +63,19 @@ public class BookController {
         ModelAndView mav = new ModelAndView("redirect:/book/list");
         return mav;
     }
+    @RequestMapping("/modify/{id}")
+    public ModelAndView modifyStudent(@PathVariable Long id) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("book", bookService.getBook(id));
+        mav.setViewName("book_modify");
+        return mav;
+    }
+
+    @RequestMapping("/do_modify")
+    public ModelAndView doModifyBook(Book book) {
+
+        bookService.modifyBook(book);
+        ModelAndView mav = new ModelAndView("redirect:/book/list");
+        return mav;
+    }
 }
