@@ -2,7 +2,8 @@ package edu.hubu.learn.web;
 
 
 import java.util.List;
-
+import org.springframework.web.servlet.ModelAndView;
+import javax.servlet.http.HttpServletRequest;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,22 @@ public class BookController {
 
         bookService.modifyBook(book);
         ModelAndView mav = new ModelAndView("redirect:/book/list");
+        return mav;
+    }
+    @RequestMapping("/search")
+    public ModelAndView searchBook() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("book_search");
+        return mav;
+    }
+
+    @RequestMapping("/do_search")
+    public ModelAndView doSearchBook(HttpServletRequest httpRequest) {
+        ModelAndView mav = new ModelAndView();
+        String keyword = httpRequest.getParameter("keyword");
+        List<Book> books = bookService.searchBooks(keyword);
+        mav.addObject("books", books);
+        mav.setViewName("books");
         return mav;
     }
 }

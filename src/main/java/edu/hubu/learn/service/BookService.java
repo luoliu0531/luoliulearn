@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import edu.hubu.learn.dao.BookDao;
@@ -35,5 +36,13 @@ public class BookService {
     }
     public void modifyBook(Book book) {
         bookDao.save(book);
+    }
+    public List<Book> searchBooks(String keyword) {
+        Book book = new Book();
+        book.setName(keyword);
+        ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("name", match->match.contains());
+        Example<Book> example = Example.of(book, matcher);
+        Sort sort = new Sort(Direction.DESC, "id");
+        return bookDao.findAll(example, sort);
     }
 }
